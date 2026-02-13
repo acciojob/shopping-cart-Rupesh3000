@@ -1,7 +1,7 @@
 const inputPrice = document.getElementById("item-price-input");
 const inputName = document.getElementById("item-name-input");
-const total = document.getElementById("total");
 const inputQty = document.getElementById("item-qty-input");
+const totalCell = document.getElementById("total");
 
 const tableBody = document.getElementById("table-body");
 const add = document.getElementById("add");
@@ -12,30 +12,36 @@ const createTableData = (name, qty, price) => {
   const tdName = document.createElement("td");
   const tdQty = document.createElement("td");
   const tdPrice = document.createElement("td");
+  const tdTotal = document.createElement("td");
+
+  const itemTotal = Number(qty) * Number(price);
 
   tdName.textContent = name;
   tdQty.textContent = qty;
   tdPrice.textContent = price;
+  tdTotal.textContent = itemTotal;
 
-  row.append(tdName, tdQty, tdPrice);
-  tableBody.appendChild(row);
+  row.append(tdName, tdQty, tdPrice, tdTotal);
 
-  const currentTotal = Number(total.textContent);
-  const itemTotal = Number(qty) * Number(price);
+  // insert BEFORE grand total row
+  tableBody.insertBefore(row, tableBody.lastElementChild);
 
-  total.textContent = currentTotal + itemTotal;
+  totalCell.textContent =
+    Number(totalCell.textContent) + itemTotal;
 };
 
 const addDataInTable = () => {
-  let inputNameValue = inputName.value;
-  let inputPriceValue = inputPrice.value;
-  let inputQtyValue = inputQty.value;
+  const name = inputName.value.trim();
+  const qty = Number(inputQty.value);
+  const price = Number(inputPrice.value);
 
-  createTableData(inputNameValue, inputQtyValue, inputPriceValue);
+  if (!name || qty <= 0 || price <= 0) return;
+
+  createTableData(name, qty, price);
 
   inputName.value = "";
-  inputPrice.value = "";
   inputQty.value = "";
+  inputPrice.value = "";
 };
 
 add.addEventListener("click", addDataInTable);

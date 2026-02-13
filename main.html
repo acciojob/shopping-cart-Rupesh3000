@@ -1,29 +1,20 @@
 <!DOCTYPE html>
-
-<html>
-
-<head>
-	<link rel="stylesheet" href="./styles.css">
-</head>
-
-<body>
-	<!-- the entire body must be written by student -->
-	<div role="form" aria-label="Shopping List Form">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+  </head>
+  <body>
+    <!-- Form Section -->
+    <div role="form" aria-label="Shopping List Form">
       <label for="item-name-input">Item Name:</label>
-      <input type="text" id="item-name-input"  />
+      <input type="text" id="item-name-input" />
+
+      <label for="item-qty-input">Quantity:</label>
+      <input type="number" id="item-qty-input" />
 
       <label for="item-price-input">Item Price:</label>
-      <input
-        type="text"
-        id="item-price-input"
-        
-      />
-<label for="item-qty-input">Quantity:</label>
-  <input
-    type="text"
-    id="item-qty-input"
-   
-  />
+      <input type="number" id="item-price-input" />
 
       <button id="add" type="button">Add</button>
     </div>
@@ -33,19 +24,20 @@
       <thead>
         <tr role="row">
           <th id="item" role="columnheader">Item</th>
+          <th role="columnheader">Quantity</th>
           <th id="price" role="columnheader">Price</th>
+          <th role="columnheader">Total</th>
         </tr>
       </thead>
+
       <tbody id="table-body" role="rowgroup">
-        <!-- Items will be dynamically inserted here -->
+        <!-- Initially only grand total row -->
+        <tr role="row">
+          <td colspan="3">Grand Total</td>
+          <td id="total">0</td>
+        </tr>
       </tbody>
     </table>
 
-    <!-- Grand Total -->
-    <h3 id="total">0</h3>
-    <script type="text/javascript" src="./script.js">
-</script>
-
-</body>
-
+  </body>
 </html>
